@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Send, CheckCircle, User, Mail, MessageSquare, Zap, ShieldCheck } from "lucide-react";
 import RocketAnimation from "../components/RocketAnimation";
+import emailjs from "@emailjs/browser";
 
 export default function JoinUs() {
   const [formData, setFormData] = useState({
@@ -13,9 +14,42 @@ export default function JoinUs() {
   const [isLaunching, setIsLaunching] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLaunching(true);
+    
+    // Validate environment variables
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error("EmailJS configuration missing");
+      alert("Email configuration is missing. Please contact the administrator.");
+      return;
+    }
+
+    try {
+      // Send email
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        publicKey
+      );
+
+      // Simulate delay before rocket launch
+      setTimeout(() => {
+        setIsLaunching(true);
+      }, 2000); // 2-3 second delay
+    } catch (error) {
+      console.error("EmailJS error details:", error);
+      alert(`Failed to send message. Error: ${error instanceof Error ? error.message : String(error)}`);
+    }
   };
 
   const handleLaunchComplete = () => {
@@ -48,6 +82,8 @@ export default function JoinUs() {
               </h2>
               <p className="text-white/60 text-lg mb-8 font-mono leading-relaxed">
                 [ENCRYPTION ENABLED] Become a part of the next generation of cloud architects. Access exclusive protocols, experimental labs, and high-priority missions.
+                <br />
+                <span className="text-neon-cyan">Send your details to: awsccmec@gmail.com</span>
               </p>
               
               <ul className="space-y-4 mb-8">

@@ -20,11 +20,10 @@ export default function RocketAnimation({ isLaunching, onComplete }: { isLaunchi
 
           {/* Rocket Container */}
           <motion.div
-            initial={{ y: 500, scale: 0.5, rotate: 0 }}
+            initial={{ y: 500, scale: 0.5 }}
             animate={{ 
               y: [500, 0, -1000], 
               scale: [0.5, 1, 1.5],
-              rotate: [0, -5, 5, -5, 0] 
             }}
             transition={{ 
               duration: 3, 

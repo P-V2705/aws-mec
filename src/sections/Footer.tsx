@@ -42,6 +42,8 @@ export default function Footer() {
             </div>
             <p className="text-white/40 text-sm font-mono leading-relaxed">
               [MEC NODE] Madha Engineering College. Building the next generation of cloud-native architects in a decentralized future.
+              <br />
+              <a href="mailto:awsccmec@gmail.com" className="text-neon-purple hover:underline">awsccmec@gmail.com</a>
             </p>
             <div className="flex items-center gap-4">
               {socialLinks.map((social, i) => (
