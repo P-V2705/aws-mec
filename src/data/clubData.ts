@@ -54,7 +54,7 @@ export const team = {
     {
       name: "Dr. Naveen Bharathi",
       role: "Faculty Advisor",
-      image: "https://picsum.photos/seed/faculty1/400/400",
+      image: "https://image2url.com/r2/default/images/1774866291798-5219b547-7b7a-4794-9d2b-90746fc6b11e.jpg",
       linkedin: "https://www.linkedin.com/in/navin-bharathi-m-914571340?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     },
     {
