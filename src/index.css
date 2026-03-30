@@ -11,25 +11,158 @@
   --font-pixel: "Courier New", Courier, monospace;
 }
 
+/* Global Background - Body/Root */
+body {
+  background: linear-gradient(135deg, #0a0f2c, #140a2e);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Background Layers */
+.bg-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bg-gradient-layer {
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(168,85,247,0.15), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(0,255,255,0.12), transparent 40%);
+  z-index: -3;
+  animation: bgMove 20s linear infinite;
+}
+
+.bg-image-layer {
+  background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  z-index: -4;
+}
+
+@keyframes bgMove {
+  0% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(-30px, -20px) scale(1.05); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.bg-grid-layer {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: -2;
+  opacity: 0.05;
+  transform: perspective(1000px) rotateX(60deg);
+}
+
+.bg-overlay-layer {
+  background: rgba(0,0,0,0.4);
+  z-index: 0;
+}
+
+/* Floating Elements Container */
+.bg-floating-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-element {
+  position: fixed;
+  opacity: 0.08;
+  filter: blur(40px);
+  animation: float 18s ease-in-out infinite;
+}
+
+.float-1 {
+  width: 200px;
+  height: 200px;
+  background: rgba(168, 85, 247, 0.6);
+  border-radius: 50%;
+  top: 10%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.float-2 {
+  width: 150px;
+  height: 150px;
+  background: rgba(0, 255, 255, 0.5);
+  border-radius: 50%;
+  top: 40%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.float-3 {
+  width: 250px;
+  height: 100px;
+  background: rgba(168, 85, 247, 0.4);
+  border-radius: 30%;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+.float-4 {
+  width: 120px;
+  height: 120px;
+  background: rgba(0, 255, 255, 0.4);
+  border-radius: 50%;
+  top: 60%;
+  right: 25%;
+  animation-delay: 1s;
+}
+
+.float-5 {
+  width: 180px;
+  height: 180px;
+  background: rgba(168, 85, 247, 0.3);
+  border-radius: 40%;
+  bottom: 10%;
+  right: 15%;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-40px) rotate(10deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Parallax Interaction */
+.bg-parallax {
+  transition: transform 0.3s ease-out;
+}
+
 @layer base {
   * {
     cursor: none !important;
   }
 
   body {
-    @apply bg-aws-navy text-white font-sans overflow-x-hidden selection:bg-neon-purple/30;
-    background-color: #080b1a; /* Deep navy/purple base */
+    @apply text-white font-sans selection:bg-neon-purple/30;
   }
 }
 
 @layer utilities {
-  .cyber-grid {
-    background-image: 
-      linear-gradient(to right, rgba(108, 43, 217, 0.1) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(108, 43, 217, 0.1) 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
-
   .glass {
     @apply bg-white/5 backdrop-blur-xl border border-white/10;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);

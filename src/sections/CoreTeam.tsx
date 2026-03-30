@@ -22,7 +22,7 @@ const TeamCard = ({ member, type }: { member: any, type: 'faculty' | 'core' | 'c
       <img
         src={member.image}
         alt={member.name}
-        className="w-full h-full object-cover rounded-full p-1 relative z-10 grayscale group-hover:grayscale-0 transition-all duration-500"
+        className="w-full h-full object-cover rounded-full p-1 relative z-10 transition-all duration-500"
         referrerPolicy="no-referrer"
       />
     </div>
