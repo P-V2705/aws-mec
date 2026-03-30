@@ -28,7 +28,7 @@ export default function Labs() {
             Experimental Zones
           </div>
           <h2 className="text-4xl md:text-7xl font-bold mb-4">
-            <span className="text-white">RESEARCH</span>{" "}
+            <span className="text-neon-purple">RESEARCH</span>{" "}
             <span className="text-neon-cyan neon-text-cyan">LABS</span>
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto font-mono">

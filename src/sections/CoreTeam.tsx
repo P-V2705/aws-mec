@@ -22,7 +22,7 @@ const TeamCard = ({ member, type }: { member: any, type: 'faculty' | 'core' | 'c
       <img
         src={member.image}
         alt={member.name}
-        className="w-full h-full object-cover rounded-full p-1 relative z-10 transition-all duration-500"
+        className="w-full h-full object-cover object-top rounded-full p-1 relative z-10 transition-all duration-500"
         referrerPolicy="no-referrer"
       />
     </div>
@@ -96,7 +96,7 @@ export default function CoreTeam() {
         <div className="mb-20">
           <div className="flex items-center justify-center gap-3 mb-12">
             <div className="w-8 h-[1px] bg-neon-purple/30" />
-            <h3 className="text-white font-bold uppercase tracking-[0.4em] text-xs font-mono">Core Units</h3>
+            <h3 className="text-neon-purple font-bold uppercase tracking-[0.4em] text-[20px] font-mono">Core Team</h3>
             <div className="w-8 h-[1px] bg-neon-purple/30" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -110,7 +110,7 @@ export default function CoreTeam() {
         <div>
           <div className="flex items-center justify-center gap-3 mb-12">
             <div className="w-8 h-[1px] bg-neon-purple/30" />
-            <h3 className="text-white font-bold uppercase tracking-[0.4em] text-xs font-mono">Support Crew</h3>
+            <h3 className="text-neon-purple font-bold uppercase tracking-[0.4em] text-[20px] font-mono">Crew Team</h3>
             <div className="w-8 h-[1px] bg-neon-purple/30" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
