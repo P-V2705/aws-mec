@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Send, CheckCircle, User, Mail, MessageSquare, Zap, ShieldCheck } from "lucide-react";
 import RocketAnimation from "../components/RocketAnimation";
-import emailjs from "@emailjs/browser";
+
+const FORMSPREE_URL = "https://formspree.io/f/mqegbwwz"; // replace with your Formspree endpoint
 
 export default function JoinUs() {
   const [formData, setFormData] = useState({
@@ -13,42 +14,33 @@ export default function JoinUs() {
   });
   const [isLaunching, setIsLaunching] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validate environment variables
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      console.error("EmailJS configuration missing");
-      alert("Email configuration is missing. Please contact the administrator.");
-      return;
-    }
+    setIsSending(true);
 
     try {
-      // Send email
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
+      const res = await fetch(FORMSPREE_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `Join Request from ${formData.name}`,
           message: formData.message,
-        },
-        publicKey
-      );
+        }),
+      });
 
-      // Simulate delay before rocket launch
+      if (!res.ok) throw new Error("Failed");
+
       setTimeout(() => {
+        setIsSending(false);
         setIsLaunching(true);
-      }, 2000); // 2-3 second delay
-    } catch (error) {
-      console.error("EmailJS error details:", error);
-      alert(`Failed to send message. Error: ${error instanceof Error ? error.message : String(error)}`);
+      }, 2500);
+    } catch {
+      setIsSending(false);
+      alert("Failed to send. Please email us directly at awsccmec@gmail.com");
     }
   };
 
@@ -198,9 +190,10 @@ export default function JoinUs() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       type="submit"
-                      className="w-full py-4 bg-neon-purple text-white font-bold uppercase tracking-[0.2em] rounded-sm flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(188,19,254,0.3)] hover:shadow-[0_0_30px_rgba(188,19,254,0.5)] transition-all"
+                      disabled={isSending}
+                      className="w-full py-4 bg-neon-purple text-white font-bold uppercase tracking-[0.2em] rounded-sm flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(188,19,254,0.3)] hover:shadow-[0_0_30px_rgba(188,19,254,0.5)] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      Initialize Uplink <Send size={18} />
+                      {isSending ? "Sending..." : <> Initialize Uplink <Send size={18} /> </>}
                     </motion.button>
                   </motion.form>
                 )}
