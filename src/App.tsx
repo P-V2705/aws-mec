@@ -8,7 +8,7 @@ import Home from "./sections/Home";
 import Roadmaps from "./sections/Roadmaps";
 import Events from "./sections/Events";
 import CoreTeam from "./sections/CoreTeam";
-import Labs from "./sections/Labs";
+import Labs from "./components/labs/Labs";
 import JoinUs from "./sections/JoinUs";
 import Footer from "./sections/Footer";
 import CustomCursor from "./components/CustomCursor";

@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 
+import CyberBackground from './CyberBackground';
+
 export default function CyberGrid() {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -27,8 +29,8 @@ export default function CyberGrid() {
 
   return (
     <>
-      {/* AWS Related Background Image */}
-      <div className="bg-layer bg-image-layer bg-parallax"></div>
+      {/* Cyberpunk Cloud Background */}
+      <CyberBackground />
 
       {/* Animated Gradient Layer */}
       <div className="bg-layer bg-gradient-layer bg-parallax"></div>
