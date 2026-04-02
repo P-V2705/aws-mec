@@ -81,7 +81,7 @@ const TiltCard = ({ item, index }: { item: any, index: number, key?: string }) =
 
 export default function Roadmaps() {
   return (
-    <section id="roadmaps" className="py-24 relative">
+    <section id="roadmaps" className="roadmap-section py-24 relative">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

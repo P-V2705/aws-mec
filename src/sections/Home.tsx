@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useTransform } from "motion/react";
 import { Server, Database, Zap, Cpu, Cloud, ArrowRight, Monitor, Cpu as Chip } from "lucide-react";
 import { useEffect } from "react";
+import CyberHeroText from '../components/CyberHeroText';
 
 const FloatingIcon = ({ icon: Icon, className, delay = 0 }: { icon: any, className: string, delay?: number }) => (
   <motion.div
@@ -33,7 +34,7 @@ export default function Home() {
   const parallaxY = useTransform(mouseY, [-0.5, 0.5], [-50, 50]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section id="home" className="home-section relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Parallax Background Elements */}
       <motion.div 
         style={{ x: parallaxX, y: parallaxY }}
@@ -65,17 +66,7 @@ export default function Home() {
           </div>
         </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="text-6xl md:text-9xl font-bold tracking-tighter mb-6"
-        >
-          <span className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">AWS</span>{" "}
-          <span className="text-gradient">CLOUD CLUB</span>
-          <br />
-          <span className="text-neon-purple neon-text-purple">MEC</span>
-        </motion.h1>
+        <CyberHeroText />
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}

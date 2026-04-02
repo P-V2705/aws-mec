@@ -21,9 +21,27 @@ export default function EventModal({ event: ev, onClose }: EventModalProps) {
 
   if (!ev) return null;
 
+  const goBackToEvents = () => {
+    const details = document.getElementById("event-details");
+    const list = document.getElementById("events-list");
+    if (details) details.style.display = "none";
+    if (list) list.style.display = "block";
+    onClose();
+  };
+
   return (
-    <div className="fixed inset-0 bg-[#0b0f1a] z-[9999] overflow-y-auto">
+    <div id="event-details" className="fixed inset-0 bg-[#0b0f1a] z-[9999] overflow-y-auto">
       <div className="max-w-6xl mx-auto p-6 md:p-12 min-h-screen flex flex-col">
+        {/* Back Button */}
+        <div className="flex justify-end mb-4">
+          <button 
+            onClick={goBackToEvents}
+            className="px-4 py-2 bg-transparent text-white/70 hover:text-white hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] border border-white/10 rounded-lg transition-all z-50 backdrop-blur-md text-sm font-medium"
+          >
+            ← Back
+          </button>
+        </div>
+
         {/* Close Button */}
         <button 
           onClick={onClose} 

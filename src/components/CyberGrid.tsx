@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import CyberBackground from './CyberBackground';
+import AINeuralBackground from './AINeuralBackground';
 
 export default function CyberGrid() {
   useEffect(() => {
@@ -29,8 +29,8 @@ export default function CyberGrid() {
 
   return (
     <>
-      {/* Cyberpunk Cloud Background */}
-      <CyberBackground />
+      {/* AI Neural Network Background */}
+      <AINeuralBackground />
 
       {/* Animated Gradient Layer */}
       <div className="bg-layer bg-gradient-layer bg-parallax"></div>
